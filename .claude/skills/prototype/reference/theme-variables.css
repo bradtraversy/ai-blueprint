@@ -1,0 +1,34 @@
+/* Theme variables - the durable output of /prototype.
+   Define the project's look as CSS variables here, then port this block into the
+   real app's globals.css @theme. The values below are EXAMPLES; derive real ones
+   from the project's stated look and feel. */
+
+:root {
+  /* surfaces */
+  --bg: #0d1117;          /* page background     */
+  --surface: #161b22;     /* cards, bars, inputs */
+  --border: #232a33;
+
+  /* text */
+  --text: #e6edf3;        /* primary             */
+  --muted: #8b949e;       /* secondary, labels   */
+  --faint: #4d5560;       /* hints               */
+
+  /* accent */
+  --accent: #e2b714;      /* primary action, focus */
+  --accent-ink: #0d1117;  /* text on accent        */
+
+  /* component states - add per project.
+     example, for a typing test:
+     --type-correct: var(--text);
+     --type-wrong: #f85149;
+     --type-pending: #545d68;
+     --caret: var(--accent); */
+
+  /* type */
+  --font-sans: "Inter", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+
+  /* scale */
+  --radius: 10px;
+}
