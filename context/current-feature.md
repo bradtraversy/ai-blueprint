@@ -1,8 +1,8 @@
 # Current Feature
 
-> **Generated file.** Run `/feature <number-or-name>` to turn one item from
-> [../docs/planning/build-plan.md](../docs/planning/build-plan.md) into a small,
-> reviewable spec here. Build exactly one feature at a time; archive it to
-> `docs/features/` when done, then run `/feature` again for the next one.
+> **Generated file.** Holds the one feature or fix being built right now. Run
+> `/feature <number-or-name>` to spec a build-plan feature, or `/fix "<bug>"` for
+> an ad-hoc fix. Build one thing at a time; `/complete` archives it (to
+> `docs/features/` or `docs/fixes/`) and resets this file.
 
-_No feature in progress. Run `/feature` to start one._
+_Nothing in progress. Run `/feature` or `/fix` to start._

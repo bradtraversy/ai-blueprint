@@ -145,13 +145,18 @@ regenerates from them.
 5. **Read the spec.** Adjust anything before code is written. This is your review
    gate.
 6. **Run `/implement`** to build it, one reviewed step at a time. It branches,
-   then for each step: build, show the diff and explain it, test, and commit on
-   your approval. It builds on the branch only.
+   then for each step: build, show the diff and explain it, test, and **iterate
+   until it works** (re-prompt or hand-edit), committing only on your approval. It
+   builds on the branch only.
 7. **Run `/complete`** to wrap up: it archives the spec to
    `docs/features/NN-name.md`, checks the feature off in `build-plan.md`, resets
    `context/current-feature.md` to its stub, then merges to main (with your
    go-ahead) and deletes the branch.
 8. Back to step 4 for the next feature.
+
+**Fixes** (a bug or change that isn't a planned feature): run `/fix "<what's wrong>"`
+instead of `/feature`, then `/implement` and `/complete` as usual. `/complete` logs
+fixes to `docs/fixes/` rather than checking them off the build plan.
 
 ## File map
 
@@ -168,12 +173,14 @@ regenerates from them.
 │   ├── planning/
 │   │   ├── project-plan.md    (YOU write: what & why)
 │   │   └── build-plan.md      (YOU write: ordered feature list)
-│   └── features/              (completed feature specs archive here)
+│   ├── features/              (completed feature specs archive here)
+│   └── fixes/                 (completed fix specs archive here)
 └── .claude/
     └── skills/
         ├── overview/          (/overview: two plans to project-overview.md)
         ├── feature/           (/feature: one build-plan item to current-feature.md)
-        ├── implement/         (/implement: build the current feature, reviewed)
+        ├── fix/               (/fix: document an ad-hoc bug fix or change)
+        ├── implement/         (/implement: build the current feature or fix, reviewed)
         ├── complete/          (/complete: log it + merge the branch)
         └── prototype/         (/prototype: static screen mockups, pre-build)
 ```
@@ -184,6 +191,7 @@ regenerates from them.
 | ----- | ------ | ---- |
 | **/overview** | after writing or editing the plans | Distills `project-plan.md` + `build-plan.md` into `context/project-overview.md`. Re-run whenever the plans change. |
 | **/feature** | for each feature you build | With no number, specs the **next unchecked** build-plan item; or pass a number/name. Sizes it, splits big ones into sub-features, writes a small-step spec to `context/current-feature.md`, then stops. |
+| **/fix** | for a bug or change not in the build plan | Documents an ad-hoc fix into `context/current-feature.md` (lighter than a feature spec), then stops. Build it with `/implement`; `/complete` logs it to `docs/fixes/`. |
 | **/implement** | after reviewing a feature spec | Builds `context/current-feature.md` one small step at a time on a feature branch: a diff plus plain-English explanation per step, your approval before each commit. Builds and commits only. |
 | **/complete** | when a feature is built and reviewed | Logs the feature (archives the spec to `docs/features/`, checks it off `build-plan.md`, resets `current-feature.md`), then merges the branch to main with your go-ahead and deletes it. Never pushes without a yes. |
 | **/prototype** | before the build loop, to lock the look | Asks about the look and which pages, proposes a plan, then writes throwaway static mockups to `prototypes/` sharing one theme (CSS variables). A pre-build helper, outside the feature loop. |

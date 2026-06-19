@@ -17,9 +17,9 @@
 The loop we use for every feature. The spec for the feature being built lives in
 @context/current-feature.md.
 
-Run `/feature` to write the spec, `/implement` to build it on a branch, and
-`/complete` to log it and merge. The numbered loop below is what those skills
-follow (and what you do by hand for small fixes).
+Run `/feature` (or `/fix` for a bug or change that isn't a planned feature) to
+write the spec, `/implement` to build it on a branch, and `/complete` to log it
+and merge. The numbered loop below is what those skills follow.
 
 1. **Spec** - Run `/feature` (no number = the next unchecked item in
    `build-plan.md`) to generate @context/current-feature.md, then review it
@@ -31,7 +31,8 @@ follow (and what you do by hand for small fixes).
    before moving to the next.
 5. **Test** - Verify in the browser. Run `npm run test` for unit tests and
    `npm run build` to check for errors.
-6. **Iterate** - Adjust if needed.
+6. **Iterate** - If it doesn't work or needs changes, re-prompt or hand-edit and
+   re-test; repeat until it works, before committing.
 7. **Commit** - Only after the build passes and everything works.
 8. **Merge** - Merge to main.
 9. **Delete branch** - After merge.
