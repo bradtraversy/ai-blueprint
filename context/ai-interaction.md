@@ -39,13 +39,18 @@ something done.
 5. **Test** - Verify in the browser. Run `npm run test` for unit tests and
    `npm run build` to check for errors.
 6. **Iterate** - If it doesn't work or needs changes, re-prompt or hand-edit and
-   re-test; repeat until it works, before committing.
-7. **Commit** - Only after the build passes and everything works.
-8. **Merge** - Merge to main.
-9. **Delete branch** - After merge.
-10. **Complete** - Archive the spec to `docs/features/NN-name.md`, check the
-    feature off in `docs/planning/build-plan.md`, and reset
-    `context/current-feature.md` to its stub.
+   re-test; repeat until it works, before moving on.
+7. **Checkpoint (optional)** - after an approved step you may commit a checkpoint
+   on the branch (a cheap rollback point), but it's optional; `/complete` makes the
+   real feature-level commit. Build and tests must pass before any commit.
+8. **Log** - `/complete` archives the spec to `docs/features/NN-name.md` (or
+   `docs/fixes/`), checks the feature off in `docs/planning/build-plan.md`, and
+   resets `context/current-feature.md` to its stub.
+9. **Feature commit** - `/complete` stages everything on the branch (step work
+   plus the logging changes) into one conventional feature commit.
+10. **Squash-merge** - `/complete` squash-merges the branch to main (explicit yes)
+    and deletes it, so the feature lands as one commit; push stays a separate
+    explicit yes.
 
 Do NOT commit without permission or until the build and tests pass. If build or
 tests fail, fix the issues first.

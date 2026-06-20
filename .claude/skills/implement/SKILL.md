@@ -1,6 +1,6 @@
 ---
 name: implement
-description: Build the feature or fix spec'd in context/current-feature.md, one small reviewable step at a time. Creates the branch, implements each step, shows the diff and explains it in plain English, tests, and iterates on feedback until it works before committing. Builds and commits on the branch only; hand off to /complete to merge and log. Use when the user runs /implement, or asks to build, implement, or start the current feature or fix once its spec is ready.
+description: Build the feature or fix spec'd in context/current-feature.md, one small reviewable step at a time. Creates the branch, implements each step, shows the diff and explains it in plain English, tests, and iterates until it works. After each approved step it offers an optional commit checkpoint on the branch; the feature-level commit, merge, and logging are /complete's job. Use when the user runs /implement, or asks to build, implement, or start the current feature or fix once its spec is ready.
 ---
 
 # implement - build the current feature or fix, one reviewed step at a time
@@ -8,14 +8,15 @@ description: Build the feature or fix spec'd in context/current-feature.md, one 
 Where this sits in the workflow:
 
     /feature or /fix  ->  [implement]  ->  /complete  ->  next
-    (the spec)            (build it,       (log it +
-                           reviewed)        merge)
+    (the spec)            (build it,       (commit +
+                           reviewed)        merge + log)
 
 `/feature` (or `/fix`) wrote the spec to `context/current-feature.md` and stopped.
 This skill turns that spec into code, following the build loop in
 `context/ai-interaction.md`, without vibe coding: small steps, a visible diff plus
 a plain-English explanation for each, testing, and iteration until it works, all
-behind your approval. It builds and commits on a branch; merging and logging are
+behind your approval. It builds on a branch and offers an optional commit
+checkpoint after each step; the feature-level commit, merging, and logging are
 `/complete`'s job.
 
 ## Before you start
@@ -32,7 +33,7 @@ Create and check out a branch named from the spec: `feature/<name>` for a featur
 `fix/<name>` for a fix. If the project isn't a git repo yet, say so and ask the
 user to run `git init` first; the loop needs branches.
 
-## Step 2 - build one step, review, iterate, commit
+## Step 2 - build one step, review, iterate, checkpoint
 
 Work through the spec's build steps in order, one at a time. For each step:
 
@@ -47,17 +48,22 @@ Work through the spec's build steps in order, one at a time. For each step:
    step (re-prompt or hand-edit the code), show the updated diff, and re-test.
    Repeat until it works and the user approves. Nothing is committed until the
    user is happy with the step.
-6. **Commit.** Once approved, commit that step with a conventional message (ask
-   before committing), then move to the next step.
+6. **Offer a checkpoint, then move on.** Once approved, ask whether to commit this
+   step as a checkpoint or roll straight into the next step. Explain in one line
+   that checkpoints are optional safety points on the branch (cheap to roll back
+   to) and not required, since `/complete` makes the real feature-level commit at
+   the end. Commit with a conventional message only if the user wants it; default
+   to continuing if they just want to proceed. Either way, move to the next step.
 
 Never batch the whole thing into one diff. If a step's diff is too big to read,
-split it. Build and tests must pass before a commit.
+split it. Build and tests must pass before any commit.
 
 ## Step 3 - hand off to /complete
 
-When every step is built, committed, and the build and tests pass, stop. Tell the
-user it's done on its branch and to run `/complete` to log it (archive, check off
-if it's a feature, reset) and merge. This skill does not touch main.
+When every step is built and the build and tests pass (committed as checkpoints or
+not), stop. Tell the user it's done on its branch and to run `/complete`, which
+makes the one feature-level commit, logs it (archive, check off if it's a feature,
+reset), and merges. This skill does not touch main.
 
 ## Rules
 
@@ -69,5 +75,5 @@ if it's a feature, reset) and merge. This skill does not touch main.
   by the authenticated user id, validate inputs, and so on).
 - Build only what the spec says. If the spec is wrong or thin, stop and fix the
   spec first, do not improvise.
-- Build and commit on the branch only. Don't merge or push here; that's
-  `/complete`.
+- Per-step commits are optional checkpoints. The feature-level commit, the merge,
+  and any push are `/complete`'s job.

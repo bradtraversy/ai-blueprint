@@ -1,24 +1,26 @@
 ---
 name: complete
-description: Wrap up a finished feature or fix. Archives its spec to docs/features/ (feature) or docs/fixes/ (fix), checks features off the build plan, resets context/current-feature.md to its stub, then merges the branch to main and deletes it. Merges only with explicit approval and never pushes without a "yes". Use when the user runs /complete, or asks to finish, wrap up, merge, or close out the current feature or fix after it's built and reviewed.
+description: Wrap up a finished feature or fix. Archives its spec to docs/features/ (feature) or docs/fixes/ (fix), checks features off the build plan, resets context/current-feature.md to its stub, makes one feature-level commit, then squash-merges the branch to main and deletes it. Merges only with explicit approval and never pushes without a "yes". Use when the user runs /complete, or asks to finish, wrap up, merge, or close out the current feature or fix after it's built and reviewed.
 ---
 
-# complete - log the finished work and merge
+# complete - log the finished work, make the feature commit, and merge
 
 Where this sits in the workflow:
 
     /feature or /fix  ->  /implement  ->  [complete]  ->  next
-    (the spec)            (build it)      (log + merge)
+    (the spec)            (build it)      (commit + merge + log)
 
-`/implement` built the feature or fix on its branch and committed each reviewed
-step. This skill closes it out: it logs the work, resets the working file, and
-merges. Run it only when the build is done, reviewed, and the build and tests pass.
+`/implement` built the feature or fix on its branch, with optional per-step commit
+checkpoints. This skill closes it out: it logs the work, makes the single
+feature-level commit, and squash-merges. Run it only when the build is done,
+reviewed, and the build and tests pass.
 
 ## Before you start
 
 Confirm the work is actually finished: `context/current-feature.md` holds a real
-spec, its steps are built and committed on a branch, and the build and tests pass.
-If work is unfinished or uncommitted, stop and say so.
+spec, its steps are built on a branch, and the build and tests pass. Uncommitted
+step work is expected (per-step checkpoints are optional); this skill commits it.
+Don't require the steps to be pre-committed.
 
 ## Step 1 - log the work
 
@@ -31,19 +33,31 @@ no build-plan number).
 - **Fix** - archive it to `docs/fixes/name.md`. A fix isn't a build-plan item, so
   there's nothing to check off.
 
-Then reset `context/current-feature.md` to its stub ("nothing in progress") and
-commit these doc changes on the branch. The archive is the build history.
+Then reset `context/current-feature.md` to its stub ("nothing in progress"). Don't
+commit yet; the next step makes one feature commit covering the code and these doc
+changes. The archive is the build history.
 
-## Step 2 - merge
+## Step 2 - make the feature commit
 
-1. Merge the branch into main, only with the user's explicit go-ahead.
+Stage everything on the branch (any uncommitted step work plus the Step 1 logging
+changes) and make one conventional feature commit (for example `feat: <feature>`
+or `fix: <name>`). Build and tests must pass first.
+
+## Step 3 - merge
+
+1. Squash-merge the branch into main, only with the user's explicit go-ahead, so
+   the feature lands as one clean commit regardless of how many checkpoints the
+   branch carried.
 2. Delete the branch after a clean merge.
-3. Never push without the user explicitly saying so. If they do, push main once.
+3. Never push without a separate explicit "yes." If the user says so, push main
+   once. A fresh local repo may have no remote yet; if so, say so.
 
 Then point the user at `/feature` (or `/fix`) for the next thing.
 
 ## Rules
 
+- The feature is the unit of history: one squashed feature commit on main, even if
+  the branch carried several checkpoint commits.
 - Don't merge unfinished or failing work; the build and tests must pass first.
 - Merging and pushing are the user's calls: get an explicit yes for the merge, and
   a separate explicit yes before any push.
