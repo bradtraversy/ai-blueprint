@@ -91,6 +91,22 @@
 - No unused imports or variables
 - Keep functions under 50 lines when possible
 
+## Comments
+
+Write code that explains itself; comment only what the code cannot say.
+Over-commenting is a common AI tell, so resist it.
+
+- Comment the **why**, not the **what**. Delete any comment that restates the code.
+- No banner/header blocks, section dividers, or step-by-step narration of obvious
+  code. A file does not need a comment announcing each region.
+- A comment earns its place only when it captures something the code can't: a
+  non-obvious decision, a gotcha or workaround, why a value is what it is, or a
+  link to a spec or issue.
+- Prefer self-documenting names and small functions over explanatory comments.
+- Keep doc comments minimal: a one-line purpose on an exported type or function is
+  plenty; don't write JSDoc that just repeats the signature.
+- When in doubt, leave the comment out.
+
 ## Writing
 
 - No em dashes (U+2014) in generated content: docs, comments, commit messages,
