@@ -59,32 +59,33 @@ flowchart TD
 
 ## Starting a new project
 
-Scaffold the app first (any stack), then overlay the blueprint on top:
+Scaffold the app first (any stack), then overlay the blueprint on top.
+
+**1. Scaffold your app** in a new, empty directory:
 
 ```bash
-# 1. Scaffold your app in a new, empty directory
 npx create-next-app@latest my-app
 cd my-app
-
-# 2. Add the blueprint with one command (run inside the app)
-npx degit bradtraversy/ai-blueprint . --force
-#    drops in AGENTS.md, CLAUDE.md, context/, docs/, .claude/ and replaces the
-#    boilerplate README. Prefer a local copy? use:
-#    cp -R path/to/ai-blueprint/{AGENTS.md,CLAUDE.md,context,docs,.claude} .
-
-# 3. Plan, then let the skills drive
-#    - fill in docs/planning/project-plan.md + docs/planning/build-plan.md
-#    - /overview    ->  generates context/project-overview.md
-#    - /prototype   ->  (optional) lock the look before building
-#    - /feature     ->  specs the next feature; review it
-#    - /implement   ->  builds it, one reviewed step at a time
-#    - /complete    ->  logs it + merges the branch
 ```
 
+**2. Add the blueprint** (run inside the app):
+
+```bash
+npx degit bradtraversy/ai-blueprint . --force
+```
+
+This drops in `AGENTS.md`, `CLAUDE.md`, `context/`, `docs/`, and `.claude/`. Prefer a local copy instead of `degit`? Run:
+
+```bash
+cp -R path/to/ai-blueprint/{AGENTS.md,CLAUDE.md,context,docs,.claude} .
+```
+
+**3. Plan, then build.** Fill in `docs/planning/project-plan.md` and `docs/planning/build-plan.md`, then run the skills (`/overview` -> `/feature` -> `/implement` -> `/complete`). See [The workflow, step by step](#the-workflow-step-by-step) below.
+
 Scaffolders like `create-next-app` need an empty folder, which is why the app
-comes first and the blueprint is overlaid second. The overlay skips `README.md`
-so you keep your project's own; the blueprint's README stays in the blueprint repo
-as the workflow reference.
+comes first and the blueprint is overlaid second. `degit` replaces the app's
+boilerplate README with the blueprint's; rename or swap in your own when you're
+ready (the `cp` alternative leaves your README in place).
 
 ## You provide two files
 
