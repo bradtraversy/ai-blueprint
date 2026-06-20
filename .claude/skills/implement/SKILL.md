@@ -48,12 +48,18 @@ Work through the spec's build steps in order, one at a time. For each step:
    step (re-prompt or hand-edit the code), show the updated diff, and re-test.
    Repeat until it works and the user approves. Nothing is committed until the
    user is happy with the step.
-6. **Offer a checkpoint, then move on.** Once approved, ask whether to commit this
-   step as a checkpoint or roll straight into the next step. Explain in one line
-   that checkpoints are optional safety points on the branch (cheap to roll back
-   to) and not required, since `/complete` makes the real feature-level commit at
-   the end. Commit with a conventional message only if the user wants it; default
-   to continuing if they just want to proceed. Either way, move to the next step.
+6. **Checkpoint prompt, then move on.** Once the step is approved, use
+   `AskUserQuestion` (a quick selectable prompt, not a free-text question) to offer
+   a short choice, noting that checkpoints are optional since `/complete` makes the
+   real feature-level commit:
+   - **Continue** (default) - roll into the next step without committing.
+   - **Commit checkpoint** - commit just this step on the branch with a
+     conventional message (a cheap rollback point).
+   - **Stop here** - pause the loop so the user can review or come back later.
+
+   On **Continue** or after **Commit checkpoint**, go to the next step. On **Stop
+   here**, stop and say where things stand: the branch is intact; run `/implement`
+   again to resume, or `/complete` to wrap up what's built so far.
 
 Never batch the whole thing into one diff. If a step's diff is too big to read,
 split it. Build and tests must pass before any commit.

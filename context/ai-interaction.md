@@ -40,9 +40,10 @@ something done.
    `npm run build` to check for errors.
 6. **Iterate** - If it doesn't work or needs changes, re-prompt or hand-edit and
    re-test; repeat until it works, before moving on.
-7. **Checkpoint (optional)** - after an approved step you may commit a checkpoint
-   on the branch (a cheap rollback point), but it's optional; `/complete` makes the
-   real feature-level commit. Build and tests must pass before any commit.
+7. **Checkpoint (optional)** - after an approved step `/implement` pops a quick
+   choice (commit a checkpoint / continue / stop here). Checkpoints are optional
+   cheap rollback points; `/complete` makes the real feature-level commit. Build
+   and tests must pass before any commit.
 8. **Log** - `/complete` archives the spec to `docs/features/NN-name.md` (or
    `docs/fixes/`), checks the feature off in `docs/planning/build-plan.md`, and
    resets `context/current-feature.md` to its stub.

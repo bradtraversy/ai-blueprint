@@ -148,9 +148,9 @@ regenerates from them.
    gate.
 6. **Run `/implement`** to build it, one reviewed step at a time. It branches,
    then for each step: build, show the diff and explain it, test, and **iterate
-   until it works** (re-prompt or hand-edit). After each approved step it offers an
-   **optional commit checkpoint** (a cheap rollback point, not required). It builds
-   on the branch only.
+   until it works** (re-prompt or hand-edit). After each approved step it pops a
+   quick choice - **commit a checkpoint**, **continue**, or **stop here** to pause -
+   so checkpoints stay optional. It builds on the branch only.
 7. **Run `/complete`** to wrap up: it archives the spec to
    `docs/features/NN-name.md`, checks the feature off in `build-plan.md`, resets
    `context/current-feature.md` to its stub, makes **one feature-level commit**,
