@@ -22,7 +22,8 @@ Build one step at a time, never the whole feature at once.
 1. Plan mode lays out the step before any code.
 2. The AI implements just that step.
 3. It shows the diff (not full files); you read it and understand it.
-4. You approve and commit, then move to the next step.
+4. You approve, then choose whether to commit a checkpoint or roll straight on.
+   Checkpoints are optional; `/complete` makes the real feature-level commit at the end.
 
 Never accept a step you haven't read. If a diff is too big to review, the step was too big, so split it.
 
