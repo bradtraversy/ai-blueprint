@@ -69,7 +69,7 @@ cd my-app
 # 2. Add the blueprint with one command (run inside the app)
 npx degit bradtraversy/ai-blueprint . --force
 #    drops in AGENTS.md, CLAUDE.md, context/, docs/, .claude/ and replaces the
-#    boilerplate README. No GitHub yet? copy from a local clone instead:
+#    boilerplate README. Prefer a local copy? use:
 #    cp -R path/to/ai-blueprint/{AGENTS.md,CLAUDE.md,context,docs,.claude} .
 
 # 3. Plan, then let the skills drive
@@ -116,10 +116,9 @@ regenerates from them.
   Tools like `create-next-app` require an empty folder, so the app comes before
   the blueprint, not after.
 - **Overlay the blueprint.** From inside the app, run one command:
-  `npx degit bradtraversy/ai-blueprint . --force` (once the blueprint is a public
-  GitHub repo). It drops in `AGENTS.md`, `CLAUDE.md`, `context/`, `docs/`, and
-  `.claude/`, and replaces the boilerplate README with the blueprint's. No GitHub
-  yet? Copy from a local clone instead:
+  `npx degit bradtraversy/ai-blueprint . --force`. It drops in `AGENTS.md`,
+  `CLAUDE.md`, `context/`, `docs/`, and `.claude/`, and replaces the boilerplate
+  README with the blueprint's. Prefer a local copy? Use:
   `cp -R path/to/ai-blueprint/{AGENTS.md,CLAUDE.md,context,docs,.claude} .`
 - **Tune the conventions.** Edit
   [context/coding-standards.md](context/coding-standards.md) to match your stack
