@@ -28,7 +28,7 @@ Check whether the spec is a feature or a fix (a fix is marked `Type: Fix` and ha
 no build-plan number).
 
 - **Feature** - archive `blueprint/context/current-feature.md` to `blueprint/history/features/NN-name.md`
-  (NN is the build-plan number), and check it off in `blueprint/planning/build-plan.md`
+  (NN is the build-plan number), and check it off in `blueprint/build-plan.md`
   (and its parent item once all sub-items are checked).
 - **Fix** - archive it to `blueprint/history/fixes/name.md`. A fix isn't a build-plan item, so
   there's nothing to check off.

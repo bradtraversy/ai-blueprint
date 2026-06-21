@@ -49,7 +49,7 @@ something done.
    me through it" gives a deeper code explanation and loops back; `/complete` makes
    the real feature-level commit. Build and tests must pass before any commit.
 8. **Log** - `/complete` archives the spec to `blueprint/history/features/NN-name.md` (or
-   `blueprint/history/fixes/`), checks the feature off in `blueprint/planning/build-plan.md`, and
+   `blueprint/history/fixes/`), checks the feature off in `blueprint/build-plan.md`, and
    resets `blueprint/context/current-feature.md` to its stub.
 9. **Feature commit** - `/complete` stages everything on the branch (step work
    plus the logging changes) into one conventional feature commit.
