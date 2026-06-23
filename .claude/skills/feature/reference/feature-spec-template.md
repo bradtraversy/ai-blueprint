@@ -7,6 +7,13 @@
 
 What this feature delivers, in a sentence or two. Why it matters.
 
+## Design reference
+
+For a visual or replication feature (recreating a design, matching a mockup),
+link the reference image(s) here, stored in `blueprint/reference/`. A screenshot
+pins down what prose can't, so build against it, not a guess. Omit this section
+when the feature has no visual target.
+
 ## In scope
 
 - The specific things this feature includes.

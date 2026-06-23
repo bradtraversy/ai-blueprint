@@ -93,6 +93,10 @@ A new branch for every feature/fix. Name it **feature/[name]** or
 - Don't refactor unrelated code unless asked
 - Don't add "nice to have" features
 - Preserve existing patterns in the codebase
+- For visual or replication features (recreating a design, matching a mockup),
+  work from a reference image stored in `blueprint/reference/`, not a prose
+  description. Ask for the image if it's missing; building a visual target from
+  words alone yields an approximation that costs rework.
 
 ## Code Review
 

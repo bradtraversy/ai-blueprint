@@ -83,6 +83,14 @@ the build loop, small build steps as a checklist (`- [ ]`, each with an observab
 "done when" - `/implement` ticks them off and resumes from the first unchecked
 one), files/areas, data/contracts, testing, and notes for the AI.
 
+**Visual or replication features need a reference image.** If the feature is
+"make it look like X" - recreating an existing design, matching a mockup, or
+rebuilding a Canva/Figma artifact - prose underspecifies the target and the build
+will approximate it wrong. Ask the user for a screenshot or image if one isn't
+already provided, save it under `blueprint/reference/` (create the folder if
+needed), and link it from the spec's Design reference section. Don't write a
+visual spec from words alone when an image could exist.
+
 This is a draft. Don't present it yet - critique it first.
 
 ## Step 4 - red-team the draft, then tighten
@@ -95,6 +103,10 @@ code exists. Run the draft against these questions:
   unhappy paths the happy-path spec skipped: empty / missing / malformed input,
   the error / loading / empty states, the first-run case, failure of anything
   external it calls.
+- **Visual fidelity.** If this is a look-alike or replication feature, is a
+  reference image linked in the spec - or are we about to build a design blind
+  from prose? If a real design exists and no image is captured, get one before
+  building, not after the approximation lands.
 - **Step size.** Would any step's diff be too big to read in one sitting? If so,
   split it - oversized steps defeat the review gate.
 - **Order.** Does each step leave the app working, and depend only on earlier
