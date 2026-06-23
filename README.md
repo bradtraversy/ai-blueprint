@@ -230,6 +230,7 @@ It changes nothing - just orients you before you pick the next skill.
 │       ├── feature/           (/feature: one build-plan item to current-feature.md)
 │       ├── fix/               (/fix: document an ad-hoc bug fix or change)
 │       ├── implement/         (/implement: build the current feature or fix, reviewed)
+│       ├── check/             (/check: run the app, prove the done-whens with evidence)
 │       ├── complete/          (/complete: feature commit, squash-merge, log)
 │       ├── prototype/         (/prototype: static screen mockups, pre-build)
 │       └── status/            (/status: where things stand, read-only)
@@ -259,6 +260,7 @@ single `blueprint/` folder, so it never clutters your app.
 | **/feature** | for each feature you build | With no number, specs the **next unchecked** build-plan item; or pass a number/name. Sizes it, splits big ones into sub-features, writes a small-step spec to `blueprint/context/current-feature.md`, then stops. |
 | **/fix** | for a bug or change not in the build plan | Documents an ad-hoc fix into `blueprint/context/current-feature.md` (lighter than a feature spec), then stops. Build it with `/implement`; `/complete` logs it to `blueprint/history/fixes/`. |
 | **/implement** | after reviewing a feature spec | Builds `blueprint/context/current-feature.md` one small step at a time on a feature branch: a diff, a plain-English summary with the done-when proven, your approval each step, and a checkpoint choice (**continue / commit checkpoint / walk me through it / stop**). Checks each step off as it goes, so you can clear context and resume from the first unchecked step. The feature commit and merge are `/complete`'s job. |
+| **/check** | to prove a step or feature works | Runs the **real app** and checks each "done when" in `current-feature.md` against observed behavior - drives the browser/CLI/API, captures screenshots and output, watches for console and network errors - then reports pass/fail per criterion. Observes only: no edits, no commit. The evidence gate before `/complete`; fixes go back through `/implement`. (Supersedes the built-in `/verify` with a spec-aware version.) |
 | **/complete** | when a feature is built and reviewed | Logs the feature (archives the spec to `blueprint/history/features/`, checks it off `build-plan.md`, resets `current-feature.md`), makes **one feature-level commit**, then **squash-merges** to main with your go-ahead and deletes the branch. Never pushes without a yes. |
 | **/prototype** | before the build loop, to lock the look | Asks about the look and which pages, proposes a plan, then writes throwaway static mockups to `prototypes/` sharing one theme (CSS variables). A pre-build helper, outside the feature loop. |
 | **/status** | any time, to get your bearings | Read-only "you are here": build-plan progress, the current feature's checked/unchecked steps, and git state (branch, uncommitted changes, last commit), ending with the single suggested next action. Changes nothing. The fast way back in after a break or a context clear. |

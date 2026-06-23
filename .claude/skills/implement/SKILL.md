@@ -60,7 +60,9 @@ Work through the spec's build steps in order, one at a time. For each step:
    must be green before the step is approved (see the Testing gate in
    `coding-standards.md`); UI and integration-only steps ride on screenshot plus
    build evidence. Never install a runner mid-step. If a step surfaces non-trivial
-   logic the spec didn't foresee, add a focused test then, or note why not.
+   logic the spec didn't foresee, add a focused test then, or note why not. When a
+   step's done-when is behavioral (a click, a download, a flow across screens),
+   run `/check` to prove it against the running app rather than eyeballing it.
 5. **Iterate until it works.** If it fails or the user wants changes, revise the
    step (re-prompt or hand-edit the code), show the updated diff, and re-test.
    Repeat until it works and the user approves. Nothing is committed until the

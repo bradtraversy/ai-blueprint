@@ -18,9 +18,11 @@ reviewed, and the build and tests pass.
 ## Before you start
 
 Confirm the work is actually finished: `blueprint/context/current-feature.md` holds a real
-spec, its steps are built on a branch, and the build and tests pass. Uncommitted
-step work is expected (per-step checkpoints are optional); this skill commits it.
-Don't require the steps to be pre-committed.
+spec, its steps are built on a branch, and the build and tests pass. If any of the
+spec's done-whens are behavioral, `/check` should have proven them against the
+running app first - don't merge on an unverified claim. Uncommitted step work is
+expected (per-step checkpoints are optional); this skill commits it. Don't require
+the steps to be pre-committed.
 
 ## Step 1 - log the work
 
