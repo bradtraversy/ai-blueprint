@@ -1,6 +1,6 @@
 ---
 name: feature
-description: Turn a feature from build-plan.md into a buildable spec. With no argument, specs the next unchecked item in the build plan; given a number or name, specs that one. Sizes the feature and splits anything too big into smaller sub-features (4a, 4b, ...) before writing small, reviewable build steps to blueprint/context/current-feature.md, then stops at a review gate. Use when the user runs /feature, names or numbers a feature, or asks to spec out, break down, or start the next feature.
+description: Turn a feature from build-plan.md into a buildable spec. With no argument, specs the next unchecked item in the build plan; given a number or name, specs that one. Sizes the feature and splits anything too big into smaller sub-features (4a, 4b, ...), writes small, reviewable build steps to blueprint/context/current-feature.md, then red-teams its own draft for gaps, oversized steps, and scope creep before stopping at a review gate. Use when the user runs /feature, names or numbers a feature, or asks to spec out, break down, or start the next feature.
 ---
 
 # feature - turn a build-plan feature into a buildable spec
@@ -83,8 +83,38 @@ the build loop, small build steps as a checklist (`- [ ]`, each with an observab
 "done when" - `/implement` ticks them off and resumes from the first unchecked
 one), files/areas, data/contracts, testing, and notes for the AI.
 
-Then stop. Tell the user to review and adjust before any code is written. This
-skill plans; it never starts building.
+This is a draft. Don't present it yet - critique it first.
+
+## Step 4 - red-team the draft, then tighten
+
+Before the user reads it, turn on the spec yourself and try to break it. The
+cheapest place to catch a scope problem or an oversized step is here, before any
+code exists. Run the draft against these questions:
+
+- **Coverage.** What does this feature need that no step delivers? Push on the
+  unhappy paths the happy-path spec skipped: empty / missing / malformed input,
+  the error / loading / empty states, the first-run case, failure of anything
+  external it calls.
+- **Step size.** Would any step's diff be too big to read in one sitting? If so,
+  split it - oversized steps defeat the review gate.
+- **Order.** Does each step leave the app working, and depend only on earlier
+  steps, never a later one? Resequence if not.
+- **Contracts.** Is any type, route, or stored shape that a later feature will
+  touch left undefined here? Lock it now and flag it load-bearing.
+- **Scope honesty.** Is anything creeping in that belongs to a later feature? Is
+  anything pushed to "out of scope" that this feature actually can't ship without?
+- **Done-whens.** Is each one observable and checkable by `/check`, or is it a
+  vague "it works"? Make it concrete.
+- **Testing.** Does the predicted coverage match the gate - in-scope logic gets a
+  test when a `test` command is declared in `AGENTS.md`, UI/integration rides on
+  screenshot + build?
+
+Apply the fixes to `current-feature.md`. Then stop and present the spec, leading
+with a short **"what the critique changed"** note - the splits, gaps, or scope
+cuts you made (or "nothing - the draft held up"). That note is the point: it shows
+the gate working before a line of code is written.
+
+Tell the user to review and adjust. This skill plans; it never starts building.
 
 ## Rules the spec must follow
 
