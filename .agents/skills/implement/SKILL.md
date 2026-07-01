@@ -74,8 +74,8 @@ Work through the spec's build steps in order, one at a time. For each step:
    step off (`- [x]`) in `blueprint/context/current-feature.md` so progress survives a context
    clear. Then offer a short choice, noting that checkpoints are optional since
    `/complete` makes the real feature-level commit. Use the current tool's short
-   user-input prompt when available, such as Codex's request-user-input flow; when
-   you've just produced a long block to read (a deep explanation, a big
+   user-input prompt when available; when you've just produced a long block to
+   read (a deep explanation, a big
    walk-through), ask in plain text instead, so the prompt doesn't cover what the
    user is still reading:
    - **Continue** (default) - roll into the next step without committing.
