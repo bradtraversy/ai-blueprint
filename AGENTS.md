@@ -44,6 +44,7 @@ adapter folders so Codex and Claude Code stay aligned.
 Core skills:
 
 - `onboard` - tune commands, standards, ignore rules, and tool adapters after overlaying the Blueprint onto a freshly scaffolded or early project
+- `doctor` - read-only Blueprint health check for setup, adapters, plans, overview freshness, and workflow drift
 - `adopt` - bootstrap the Blueprint into an existing brownfield app with shipped features
 - `overview` - distill the two planning docs into `blueprint/context/project-overview.md`
 - `feature` - turn a build-plan item into a spec in `blueprint/context/current-feature.md`
@@ -52,7 +53,7 @@ Core skills:
 - `check` - prove the current spec against the running app
 - `complete` - log it to `blueprint/history/features/` or `blueprint/history/fixes/`, then merge
 - `prototype` - optional, pre-build static mockups to lock the look
-- `status` - read-only summary of progress and the suggested next action
+- `status` - read-only progress summary, workflow drift warning, and suggested next action
 
 In Codex, invoke these as skills (`$onboard`, `$overview`, `$feature`,
 `$implement`, and so on) or ask naturally, such as "run the overview." In Claude

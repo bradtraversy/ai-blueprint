@@ -105,6 +105,8 @@ In Codex, invoke it as `$onboard` or ask naturally, such as "run onboard."
 [blueprint/context/coding-standards.md](blueprint/context/coding-standards.md) and
 [blueprint/context/ai-interaction.md](blueprint/context/ai-interaction.md). Adjust
 anything `/onboard` flagged or anything that does not match how you want to work.
+If something feels off, run `/doctor`; it is a read-only health check for the
+Blueprint setup.
 
 **5. Plan the app.** Fill in the two files you own:
 
@@ -249,9 +251,14 @@ the skill tells you to.
 
 ## Using the workflow
 
-Start by running `/overview`. It distills the two planning docs into
-`blueprint/context/project-overview.md` and reports contradictions or gaps under
-**Open questions**. Answer those questions in the plans, then re-run `/overview`.
+After `/onboard` and after filling in the two planning docs, run `/overview`. It
+distills those docs into `blueprint/context/project-overview.md` and reports
+contradictions or gaps under **Open questions**. Answer those questions in the
+plans, then re-run `/overview`.
+
+If you are unsure whether setup is complete, the plans are ready, or the overview
+is current, run `/doctor`. If setup is healthy and you just need to know where
+the build loop stands, run `/status`.
 
 Then repeat the build loop for each feature:
 
@@ -285,6 +292,7 @@ Then continue with `/implement`, `/check`, and `/complete`. Fixes are logged to
 | Skill | Run it | Does |
 | ----- | ------ | ---- |
 | **/onboard** | once, after overlaying onto a fresh or early project | Detects the stack, updates commands and conventions, checks `.gitignore`, and tells you what to fill in before `/overview`. |
+| **/doctor** | any time, especially after `/onboard` or when setup feels off | Runs a read-only health check for Blueprint files, adapters, commands, ignore rules, planning readiness, overview freshness, workflow drift, and git state. |
 | **/adopt** | once, for an existing codebase | Surveys the repo and generates the planning docs and coding standards from what already exists. |
 | **/overview** | after writing or editing the plans | Generates `blueprint/context/project-overview.md` from the two planning docs. |
 | **/feature** | for each planned feature | Specs the next unchecked feature, or a selected feature, into `current-feature.md`. |
@@ -293,7 +301,7 @@ Then continue with `/implement`, `/check`, and `/complete`. Fixes are logged to
 | **/check** | before wrapping up, or any time you want proof | Runs the real app and reports pass/fail against the spec's done-whens. |
 | **/complete** | when work is built and reviewed | Archives the spec, commits the finished work, and merges with your approval. |
 | **/prototype** | before the build loop | Creates throwaway static mockups to explore the look and feel. |
-| **/status** | any time | Shows build-plan progress, the current feature state, git state, and the suggested next action. |
+| **/status** | any time | Shows build-plan progress, current work, overview freshness, git state, workflow drift warnings, and the suggested next action. |
 
 These commands are the structured path, not a cage. You can describe a feature,
 fix, or change directly in chat at any time. Use the skills when you want the
@@ -344,8 +352,8 @@ item. Mid-feature, run `/implement` again and it resumes from the first unchecke
 step in `current-feature.md`.
 
 > [!TIP]
-> If you are unsure what to do next, run `/status`. It reads the workflow files
-> and suggests the next action without changing anything.
+> If you are unsure what to do next, run `/status`. If you are unsure whether the
+> Blueprint is set up correctly, run `/doctor`. Both are read-only.
 
 ## File map
 
@@ -356,6 +364,7 @@ step in `current-feature.md`.
 ├── .agents/
 │   └── skills/                (Codex repo skills)
 │       ├── adopt/             ($adopt: bootstrap from an existing codebase)
+│       ├── doctor/            ($doctor: read-only Blueprint health check)
 │       ├── onboard/           ($onboard: finish fresh-project setup)
 │       ├── overview/          ($overview: plans to project-overview.md)
 │       ├── feature/           ($feature: build-plan item to current-feature.md)
@@ -368,6 +377,7 @@ step in `current-feature.md`.
 ├── .claude/
 │   └── skills/                (Claude Code skills and slash commands)
 │       ├── adopt/             (/adopt: bootstrap from an existing codebase)
+│       ├── doctor/            (/doctor: read-only Blueprint health check)
 │       ├── onboard/           (/onboard: finish fresh-project setup)
 │       ├── overview/          (/overview: plans to project-overview.md)
 │       ├── feature/           (/feature: build-plan item to current-feature.md)
