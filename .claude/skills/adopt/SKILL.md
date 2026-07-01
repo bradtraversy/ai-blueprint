@@ -1,6 +1,6 @@
 ---
 name: adopt
-description: Bring the blueprint into an existing (brownfield) codebase. Surveys the real repo, interviews you for the intent code can't reveal, then generates the two plans you own (project-plan.md with shipped features, build-plan.md as a checklist with existing features already checked) plus coding-standards.md reflecting the project's actual conventions - and points you at /overview to finish. Use when the user runs /adopt, is overlaying the blueprint onto an app that already has code, or asks to adopt, onboard, or bootstrap the workflow into an existing project.
+description: Bring the blueprint into an existing (brownfield) codebase. Surveys the real repo, interviews you for the intent code can't reveal, then generates the two plans you own (project-plan.md with shipped features, build-plan.md as a checklist with existing features already checked) plus coding-standards.md reflecting the project's actual conventions - and points you at /overview to finish. Use when the user runs /adopt, is overlaying the blueprint onto an app that already has meaningful code, or asks to adopt or bootstrap the workflow into an existing project. For freshly scaffolded or early projects, use onboard instead.
 ---
 
 # adopt - bootstrap the blueprint from an existing codebase

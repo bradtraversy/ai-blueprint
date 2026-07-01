@@ -85,18 +85,27 @@ should keep `AGENTS.md` because `CLAUDE.md` imports it.
 | Claude Code only | `AGENTS.md`, `CLAUDE.md`, `.claude/`, `blueprint/` | `.agents/` |
 | Codex and Claude Code | `AGENTS.md`, `CLAUDE.md`, `.agents/`, `.claude/`, `blueprint/` | Nothing |
 
-**3. Tune the conventions.** Edit
-[blueprint/context/coding-standards.md](blueprint/context/coding-standards.md) to
-match your stack, and skim
-[blueprint/context/ai-interaction.md](blueprint/context/ai-interaction.md) so you
-know how the AI is expected to work with you.
+**3. Run onboard.** This detects the stack, updates the Commands section of
+`AGENTS.md`, tunes `coding-standards.md`, checks `.gitignore`, and confirms which
+tool adapters you need:
 
-**4. Plan the app.** Fill in the two files you own:
+```text
+/onboard
+```
+
+In Codex, invoke it as `$onboard` or ask naturally, such as "run onboard."
+
+**4. Review the setup.** Skim
+[blueprint/context/coding-standards.md](blueprint/context/coding-standards.md) and
+[blueprint/context/ai-interaction.md](blueprint/context/ai-interaction.md). Adjust
+anything `/onboard` flagged or anything that does not match how you want to work.
+
+**5. Plan the app.** Fill in the two files you own:
 
 - [blueprint/project-plan.md](blueprint/project-plan.md)
 - [blueprint/build-plan.md](blueprint/build-plan.md)
 
-**5. Start the build loop.**
+**6. Start the build loop.**
 
 ```text
 /overview
@@ -119,7 +128,8 @@ this one; the `cp` alternative leaves your README in place.
 
 ### Already have a codebase?
 
-Overlay the blueprint files the same way, then run:
+If the app already has meaningful shipped features, use `/adopt` instead of
+`/onboard`. Overlay the blueprint files the same way, then run:
 
 ```text
 /adopt
@@ -256,6 +266,7 @@ Then continue with `/implement`, `/check`, and `/complete`. Fixes are logged to
 
 | Skill | Run it | Does |
 | ----- | ------ | ---- |
+| **/onboard** | once, after overlaying onto a fresh or early project | Detects the stack, updates commands and conventions, checks `.gitignore`, and tells you what to fill in before `/overview`. |
 | **/adopt** | once, for an existing codebase | Surveys the repo and generates the planning docs and coding standards from what already exists. |
 | **/overview** | after writing or editing the plans | Generates `blueprint/context/project-overview.md` from the two planning docs. |
 | **/feature** | for each planned feature | Specs the next unchecked feature, or a selected feature, into `current-feature.md`. |
@@ -327,6 +338,7 @@ step in `current-feature.md`.
 ├── .agents/
 │   └── skills/                (Codex repo skills)
 │       ├── adopt/             ($adopt: bootstrap from an existing codebase)
+│       ├── onboard/           ($onboard: finish fresh-project setup)
 │       ├── overview/          ($overview: plans to project-overview.md)
 │       ├── feature/           ($feature: build-plan item to current-feature.md)
 │       ├── fix/               ($fix: document an ad-hoc fix)
@@ -338,6 +350,7 @@ step in `current-feature.md`.
 ├── .claude/
 │   └── skills/                (Claude Code skills and slash commands)
 │       ├── adopt/             (/adopt: bootstrap from an existing codebase)
+│       ├── onboard/           (/onboard: finish fresh-project setup)
 │       ├── overview/          (/overview: plans to project-overview.md)
 │       ├── feature/           (/feature: build-plan item to current-feature.md)
 │       ├── fix/               (/fix: document an ad-hoc fix)
@@ -401,9 +414,10 @@ between tools.
 
 Use the native invocation style for your tool:
 
-- Codex: `$overview`, `$feature`, `$implement`, `$check`, `$complete`, or plain
-  language like "run the overview."
-- Claude Code: `/overview`, `/feature`, `/implement`, `/check`, `/complete`.
+- Codex: `$onboard`, `$overview`, `$feature`, `$implement`, `$check`, `$complete`,
+  or plain language like "run the overview."
+- Claude Code: `/onboard`, `/overview`, `/feature`, `/implement`, `/check`,
+  `/complete`.
 - Other tools: ask the agent to follow the matching `SKILL.md`.
 
 ```text

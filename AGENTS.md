@@ -43,6 +43,8 @@ adapter folders so Codex and Claude Code stay aligned.
 
 Core skills:
 
+- `onboard` - tune commands, standards, ignore rules, and tool adapters after overlaying the Blueprint onto a freshly scaffolded or early project
+- `adopt` - bootstrap the Blueprint into an existing brownfield app with shipped features
 - `overview` - distill the two planning docs into `blueprint/context/project-overview.md`
 - `feature` - turn a build-plan item into a spec in `blueprint/context/current-feature.md`
 - `fix` - document an ad-hoc bug or change into `blueprint/context/current-feature.md`
@@ -52,12 +54,13 @@ Core skills:
 - `prototype` - optional, pre-build static mockups to lock the look
 - `status` - read-only summary of progress and the suggested next action
 
-In Codex, invoke these as skills (`$overview`, `$feature`, `$implement`, and so
-on) or ask naturally, such as "run the overview." In Claude Code, use the slash
-commands (`/overview`, `/feature`, and so on). In tools without native skills,
-follow the matching `SKILL.md` manually. The conventions in `blueprint/context/`
-apply however a step is invoked, and the review gates are not optional: small
-steps, and the user approves each diff before it lands.
+In Codex, invoke these as skills (`$onboard`, `$overview`, `$feature`,
+`$implement`, and so on) or ask naturally, such as "run the overview." In Claude
+Code, use the slash commands (`/onboard`, `/overview`, `/feature`, and so on). In
+tools without native skills, follow the matching `SKILL.md` manually. The
+conventions in `blueprint/context/` apply however a step is invoked, and the
+review gates are not optional: small steps, and the user approves each diff
+before it lands.
 
 ## Commands
 
