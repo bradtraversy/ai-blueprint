@@ -42,7 +42,8 @@ Scaffold the app first, then overlay the blueprint on top.
 > Scaffold your app first, then overlay the Blueprint. Do not run a framework
 > scaffolder inside a folder that already contains Blueprint files.
 
-**1. Scaffold your app** in a new, empty directory:
+**1. Scaffold your app** in a new, empty directory. Next.js is only an example
+here; use any stack or scaffolder you want:
 
 ```bash
 npx create-next-app@latest my-app
@@ -50,8 +51,8 @@ cd my-app
 ```
 
 Make sure the app is a **git repo**. The build loop works on branches and
-squash-merges. `create-next-app` runs `git init` for you; if your scaffolder
-does not, run it yourself:
+squash-merges. Some scaffolders run `git init` for you; if yours does not, run it
+yourself:
 
 ```bash
 git init
@@ -112,10 +113,9 @@ In Codex, invoke the same workflow as skills (`$overview`, `$feature`,
 `$implement`, `$check`, `$complete`) or ask naturally, such as "run the
 overview." In Claude Code, use the slash commands shown above.
 
-Scaffolders like `create-next-app` need an empty folder, which is why the app
-comes first and the blueprint is overlaid second. `degit` replaces the app's
-boilerplate README with this one; the `cp` alternative leaves your README in
-place.
+Most scaffolders need an empty folder, which is why the app comes first and the
+blueprint is overlaid second. `degit` replaces the app's boilerplate README with
+this one; the `cp` alternative leaves your README in place.
 
 ### Already have a codebase?
 
