@@ -1,6 +1,6 @@
 ---
 name: onboard
-description: Set up the Blueprint after overlaying it onto a freshly scaffolded or early project. Detects the stack, updates AGENTS.md commands, tunes coding-standards.md, checks ai-interaction.md and .gitignore, confirms which tool adapters to keep, and tells the user exactly what to fill in before /overview or $overview. Use when the user runs /onboard, invokes $onboard, just copied the Blueprint into a new project, or asks what to do after overlaying the Blueprint. For an existing app with meaningful shipped features, use adopt instead.
+description: Set up the Blueprint after overlaying it onto a freshly scaffolded or early project. Detects the stack, updates AGENTS.md commands, sets the CLAUDE.md project title when present, tunes coding-standards.md, checks ai-interaction.md and .gitignore, confirms which tool adapters to keep, and tells the user exactly what to fill in before /overview or $overview. Use when the user runs /onboard, invokes $onboard, just copied the Blueprint into a new project, or asks what to do after overlaying the Blueprint. For an existing app with meaningful shipped features, use adopt instead.
 ---
 
 # onboard - finish the Blueprint overlay setup
@@ -11,9 +11,10 @@ Where this sits in the workflow:
     (user/tool)       (copied files)          (tune setup)   (user-owned inputs)       (generated context)
 
 `/onboard` is the fresh-project on-ramp. It assumes the app was scaffolded first
-and the Blueprint files were overlaid after. Its job is to make the Blueprint fit
-the real project before planning starts: commands, conventions, ignore rules, and
-tool adapters.
+and the Blueprint files were overlaid after. Run it before filling in plans or
+running `/overview`. Its job is to make the Blueprint fit the real project before
+planning starts: commands, project title, conventions, ignore rules, and tool
+adapters.
 
 Use `/adopt` instead when the app is brownfield: real routes, shipped features,
 and project behavior already exist and need to be reflected into the plans.
@@ -50,11 +51,12 @@ Read only enough to identify the setup:
 - source layout, route layout, and app/package directories
 - existing `.gitignore`
 - whether `.agents/` and `.claude/` are both needed
+- project name, from `package.json`, the folder name, existing docs, or the user
 
 Do not infer more than the files support. Mark uncertain items as `> TODO` in the
 summary rather than inventing a convention.
 
-## Step 2 - update project commands
+## Step 2 - update project entry files
 
 Update the Commands section of `AGENTS.md` to match real scripts and commands.
 Include only commands that exist or are intentionally available:
@@ -67,6 +69,11 @@ Include only commands that exist or are intentionally available:
 
 If no test command exists, say so explicitly. Do not claim tests are a gate until
 a real test command is configured.
+
+If `CLAUDE.md` exists and still has the placeholder `# Project Name`, replace it
+with the detected project name. Keep the `@AGENTS.md` and `@blueprint/...`
+imports intact. Do not move detailed app context into `CLAUDE.md`; that belongs
+in `AGENTS.md` and the generated project overview.
 
 ## Step 3 - tune coding standards
 
@@ -122,6 +129,7 @@ Do not delete adapters unless the user explicitly asks.
 Stop with a concise onboarding report:
 
 - stack and package manager detected
+- project name used for entry files
 - files changed
 - commands now available
 - testing gate status

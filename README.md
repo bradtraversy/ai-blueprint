@@ -85,9 +85,15 @@ should keep `AGENTS.md` because `CLAUDE.md` imports it.
 | Claude Code only | `AGENTS.md`, `CLAUDE.md`, `.claude/`, `blueprint/` | `.agents/` |
 | Codex and Claude Code | `AGENTS.md`, `CLAUDE.md`, `.agents/`, `.claude/`, `blueprint/` | Nothing |
 
-**3. Run onboard.** This detects the stack, updates the Commands section of
-`AGENTS.md`, tunes `coding-standards.md`, checks `.gitignore`, and confirms which
-tool adapters you need:
+> [!IMPORTANT]
+> After the overlay, run `/onboard` before filling in plans or running
+> `/overview`. This is the setup pass that makes the Blueprint match your actual
+> project.
+
+**3. Run onboard before anything else.** This detects the stack, updates the
+Commands section of `AGENTS.md`, sets the `CLAUDE.md` project title when present,
+tunes `coding-standards.md`, checks `.gitignore`, and confirms which tool
+adapters you need:
 
 ```text
 /onboard
