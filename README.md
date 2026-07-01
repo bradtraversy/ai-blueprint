@@ -111,22 +111,31 @@ anything `/onboard` flagged or anything that does not match how you want to work
 - [blueprint/project-plan.md](blueprint/project-plan.md)
 - [blueprint/build-plan.md](blueprint/build-plan.md)
 
-**6. Start the build loop.**
+**6. Generate the overview once.** This turns your two planning docs into
+`blueprint/context/project-overview.md`, the AI-facing source of truth:
 
 ```text
 /overview
+```
+
+Re-run `/overview` only when `project-plan.md` or `build-plan.md` changes.
+
+**7. Repeat the build loop.** Once the overview exists, build one feature or fix
+at a time:
+
+```text
 /feature
 /implement
 /check
 /complete
 ```
 
-That path creates project context, specs the next feature, builds it, proves it
-works, then archives and merges it.
+That loop specs the next feature, builds it, proves it works, then archives and
+merges it.
 
-In Codex, invoke the same workflow as skills (`$overview`, `$feature`,
-`$implement`, `$check`, `$complete`) or ask naturally, such as "run the
-overview." In Claude Code, use the slash commands shown above.
+In Codex, invoke the same steps as skills (`$overview`, `$feature`, `$implement`,
+`$check`, `$complete`) or ask naturally, such as "run the overview." In Claude
+Code, use the slash commands shown above.
 
 Most scaffolders need an empty folder, which is why the app comes first and the
 blueprint is overlaid second. `degit` replaces the app's boilerplate README with
@@ -145,13 +154,13 @@ If the app already has meaningful shipped features, use `/adopt` instead of
 generates the planning docs and coding standards from what already exists. Then
 run `/overview` and continue through the normal build loop.
 
-## The AI build loop
+## The AI workflow
 
 AI loops are popular because the assistant can plan, act, check the result, and
 iterate. This blueprint turns that idea into a project workflow with human review
 gates and a written history.
 
-The main loop is:
+The repeating build loop is:
 
 ```text
 /feature -> review spec -> /implement -> /check -> /complete
@@ -174,6 +183,9 @@ In this repo, **the build loop** means:
 
 The loop is the control system. The AI can keep iterating, but only inside the
 current spec, with observable checks and review gates.
+
+The diagram shows the whole workflow. `/overview` happens after planning and only
+re-runs when the plans change; the repeating loop starts at `/feature`.
 
 ```mermaid
 flowchart TD
